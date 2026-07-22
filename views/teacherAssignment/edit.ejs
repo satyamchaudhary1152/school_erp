@@ -1,0 +1,294 @@
+
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-warning">
+
+            <h3 class="mb-0">
+
+                Edit Teacher Assignment
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+            <% if(typeof customError !== "undefined" && customError){ %>
+
+    <div class="alert alert-danger">
+
+        <%= customError %>
+
+    </div>
+
+<% } %>
+
+            <form
+                action="/teacher-assignments/<%= assignment._id %>?_method=PUT"
+                method="POST">
+
+                <!-- Teacher -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Teacher
+
+                    </label>
+
+                    <select
+                        name="teacher"
+                        class="form-select"
+                        required>
+
+                        <% teachers.forEach(teacher=>{ %>
+
+                            <option
+                                value="<%= teacher._id %>"
+                                <%= assignment.teacher.toString()===teacher._id.toString() ? "selected" : "" %>>
+
+                                <%= teacher.name %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Class -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Class
+
+                    </label>
+
+                    <select
+                        id="classSelect"
+                        name="class"
+                        class="form-select"
+                        required>
+
+                        <% classes.forEach(cls=>{ %>
+
+                            <option
+                                value="<%= cls._id %>"
+                                <%= assignment.class.toString()===cls._id.toString() ? "selected" : "" %>>
+
+                                <%= cls.className %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Section -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Section
+
+                    </label>
+
+                    <select
+                        id="sectionSelect"
+                        name="section"
+                        class="form-select"
+                        required>
+
+                        <% sections.forEach(section=>{ %>
+
+                            <option
+                                value="<%= section._id %>"
+
+                                data-class="<%= section.class %>"
+
+                                <%= assignment.section.toString()===section._id.toString() ? "selected" : "" %>>
+
+                                <%= section.sectionName %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Subject -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Subject
+
+                    </label>
+
+                    <select
+                        name="subject"
+                        class="form-select"
+                        required>
+
+                        <% subjects.forEach(subject=>{ %>
+
+                            <option
+                                value="<%= subject._id %>"
+                                <%= assignment.subject.toString()===subject._id.toString() ? "selected" : "" %>>
+
+                                <%= subject.subjectName %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+                
+                <!-- Role -->
+
+<div class="mb-3">
+
+    <label class="form-label">
+
+        Role
+
+    </label>
+
+    <select
+        name="role"
+        class="form-select"
+        required>
+
+        <option
+            value="Subject Teacher"
+            <%= assignment.role==="Subject Teacher" ? "selected" : "" %>>
+
+            Subject Teacher
+
+        </option>
+
+        <option
+            value="Class Teacher"
+            <%= assignment.role==="Class Teacher" ? "selected" : "" %>>
+
+            Class Teacher
+
+        </option>
+
+    </select>
+
+</div>
+
+                <!-- Status -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Status
+
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select">
+
+                        <option
+                            value="Active"
+                            <%= assignment.status==="Active" ? "selected" : "" %>>
+
+                            Active
+
+                        </option>
+
+                        <option
+                            value="Inactive"
+                            <%= assignment.status==="Inactive" ? "selected" : "" %>>
+
+                            Inactive
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="d-flex justify-content-between">
+
+                    <a
+                        href="/teacher-assignments"
+                        class="btn btn-secondary">
+
+                        ← Back
+
+                    </a>
+
+                    <button
+                        class="btn btn-warning">
+
+                        ✏️ Update Assignment
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const classSelect=document.getElementById("classSelect");
+
+const sectionSelect=document.getElementById("sectionSelect");
+
+function filterSections(){
+
+    const classId=classSelect.value;
+
+    Array.from(sectionSelect.options).forEach(option=>{
+
+        option.style.display="";
+
+        if(option.value==="") return;
+
+        if(option.dataset.class!==classId){
+
+            option.style.display="none";
+
+        }
+
+    });
+
+}
+
+classSelect.addEventListener("change",filterSections);
+
+window.onload=filterSections;
+
+</script>
+

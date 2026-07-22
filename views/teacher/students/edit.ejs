@@ -1,0 +1,126 @@
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>Edit Student</h2>
+
+        <a href="/teacher/students" class="btn btn-secondary">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+    <% if(errors && Object.keys(errors).length > 0){ %>
+
+        <div class="alert alert-danger">
+
+            <ul class="mb-0">
+
+                <% Object.values(errors).forEach(error=>{ %>
+
+                    <li>
+
+                        <%= error.message %>
+
+                    </li>
+
+                <% }) %>
+
+            </ul>
+
+        </div>
+
+    <% } %>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <form
+                action="/teacher/students/<%= student._id %>?_method=PUT"
+                method="POST">
+
+                <!-- Name -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        value="<%= student.name %>"
+                        required>
+
+                </div>
+
+                <!-- Email -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Email
+
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        value="<%= student.email %>"
+                        required>
+
+                </div>
+
+                <!-- Age -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Age
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="age"
+                        class="form-control"
+                        value="<%= student.age %>"
+                        required>
+
+                </div>
+
+                <div class="alert alert-info">
+
+                    <i class="fa-solid fa-lock me-2"></i>
+
+                    This student belongs to your assigned Class & Section. These values cannot be changed.
+
+                </div>
+
+                <button class="btn btn-primary">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Update Student
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

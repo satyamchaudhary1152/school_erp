@@ -1,0 +1,166 @@
+
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <!-- Card Header -->
+
+        <div class="card-header bg-warning">
+
+            <h3 class="mb-0">
+
+                Edit Subject
+
+            </h3>
+
+        </div>
+
+        <!-- Card Body -->
+
+        <div class="card-body">
+
+            <form
+                action="/subjects/<%= subject._id %>?_method=PUT"
+                method="POST">
+
+                <!-- Subject Name -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Subject Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="subjectName"
+                        class="form-control"
+                        value="<%= subject.subjectName %>"
+                        required>
+
+                    <% if(errors?.subjectName){ %>
+
+                        <div class="text-danger mt-1">
+
+                            <%= errors.subjectName.message %>
+
+                        </div>
+
+                    <% } %>
+
+                </div>
+
+                <!-- Subject Code -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Subject Code
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="subjectCode"
+                        class="form-control"
+                        value="<%= subject.subjectCode %>"
+                        required>
+
+                    <% if(errors?.subjectCode){ %>
+
+                        <div class="text-danger mt-1">
+
+                            <%= errors.subjectCode.message %>
+
+                        </div>
+
+                    <% } %>
+
+                </div>
+
+                <!-- Description -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Description
+
+                    </label>
+
+                    <textarea
+                        name="description"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Write a short description..."><%= subject.description || "" %></textarea>
+
+                </div>
+
+                <!-- Status -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Status
+
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select">
+
+                        <option
+                            value="Active"
+                            <%= subject.status === "Active" ? "selected" : "" %>>
+
+                            Active
+
+                        </option>
+
+                        <option
+                            value="Inactive"
+                            <%= subject.status === "Inactive" ? "selected" : "" %>>
+
+                            Inactive
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Buttons -->
+
+                <div class="d-flex justify-content-between">
+
+                    <a
+                        href="/subjects"
+                        class="btn btn-secondary">
+
+                        ← Back
+
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn btn-warning">
+
+                        ✏️ Update Subject
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+

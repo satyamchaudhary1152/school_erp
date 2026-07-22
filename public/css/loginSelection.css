@@ -1,0 +1,287 @@
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:"Segoe UI",sans-serif;
+
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#4f46e5);
+
+    position:relative;
+
+}
+
+.background{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+}
+
+.blob{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(70px);
+
+    opacity:.45;
+
+    animation:float 10s ease-in-out infinite;
+
+}
+
+.blob1{
+
+    width:260px;
+
+    height:260px;
+
+    background:#38bdf8;
+
+    top:-60px;
+
+    left:-60px;
+
+}
+
+.blob2{
+
+    width:300px;
+
+    height:300px;
+
+    background:#8b5cf6;
+
+    right:-80px;
+
+    bottom:-60px;
+
+}
+
+.blob3{
+
+    width:220px;
+
+    height:220px;
+
+    background:#14b8a6;
+
+    top:45%;
+
+    left:45%;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-25px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+.login-wrapper{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:25px;
+
+}
+
+.logo-circle{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.2);
+
+}
+
+.glass-card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:22px;
+
+    padding:28px 24px;
+
+    text-align:center;
+
+    color:white;
+
+    transition:.4s;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.22);
+
+    max-width:340px;
+
+    margin:auto;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-12px) scale(1.03);
+
+    box-shadow:0 30px 60px rgba(0,0,0,.35);
+
+}
+
+.icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    margin-bottom:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:32px;
+
+}
+
+.admin{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+}
+
+.teacher{
+
+    background:linear-gradient(135deg,#7c3aed,#8b5cf6);
+
+}
+
+.glass-card h3{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+}
+
+.glass-card p{
+
+    color:#e5e7eb;
+
+    min-height:50px;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+.btn-login{
+
+    margin-top:10px;
+
+    background:linear-gradient(135deg,#dee5f5,#3b82f6);
+
+    width:100%;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+}
+
+.btn-login:hover{
+
+    color:rgb(255, 255, 255);
+
+    transform:scale(1.03);
+
+}
+
+footer{
+
+    position:absolute;
+
+    bottom:10px;
+
+    width:100%;
+
+    text-align:center;
+
+    color:white;
+
+    opacity:.75;
+
+    font-size:13px;
+
+}

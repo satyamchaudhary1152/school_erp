@@ -1,0 +1,169 @@
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>Add Student</h2>
+
+        <a href="/students" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back
+        </a>
+
+    </div>
+
+    <% if (errors && errors.length > 0) { %>
+
+        <div class="alert alert-danger">
+
+            <ul class="mb-0">
+
+                <% errors.forEach(error => { %>
+
+                    <li><%= error %></li>
+
+                <% }) %>
+
+            </ul>
+
+        </div>
+
+    <% } %>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <form action="/students" method="POST">
+
+                <!-- Name -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        value="<%= oldData?.name || '' %>"
+                        required>
+
+                </div>
+
+                <!-- Email -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        value="<%= oldData?.email || '' %>"
+                        required>
+
+                </div>
+
+                <!-- Class -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Class
+                    </label>
+
+                    <select
+                        name="class"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            Select Class
+                        </option>
+
+                        <% classes.forEach(cls => { %>
+
+                            <option
+                                value="<%= cls._id %>"
+                                <%= oldData?.class == cls._id.toString() ? "selected" : "" %>>
+
+                                <%= cls.className %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+                <!-- Section -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Section
+                    </label>
+
+                    <select
+                        name="section"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            Select Section
+                        </option>
+
+                        <% sections.forEach(section => { %>
+
+                            <option
+                                value="<%= section._id %>"
+                                <%= oldData?.section == section._id.toString() ? "selected" : "" %>>
+
+                                <%= section.class.className %> - <%= section.sectionName %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+                <!-- Age -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        name="age"
+                        class="form-control"
+                        value="<%= oldData?.age || '' %>"
+                        required>
+
+                </div>
+
+                <button class="btn btn-primary">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Student
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

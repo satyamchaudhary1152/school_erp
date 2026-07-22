@@ -1,0 +1,219 @@
+.topbar{
+
+height:60px;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(15px);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 20px;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+color:rgb(5, 4, 4);
+
+}
+
+.right{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.profile{
+
+width: 42px;
+
+height:42px;
+
+border-radius:50%;
+
+}
+
+/* ===========================
+   Topbar
+=========================== */
+
+.topbar{
+
+    height:70px;
+
+    background:#fff;
+
+    border-bottom:1px solid #ddd;
+
+    padding:0 30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+.topbar .dropdown button{
+
+    height:48px;
+
+    border-radius:12px;
+
+}
+
+.topbar .dropdown-menu{
+
+    border:none;
+
+    border-radius:12px;
+
+    min-width:230px;
+
+}
+
+.topbar .dropdown-item{
+
+    padding:10px 16px;
+
+}
+
+.topbar .dropdown-item:hover{
+
+    background:#f5f5f5;
+
+}
+
+/* ===========================
+   Custom Profile Dropdown
+=========================== */
+
+.profile-dropdown{
+
+    position:relative;
+
+}
+
+.profile-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    border:none;
+
+    background:#fff;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.profile-btn:hover{
+
+    background:#f8f9fa;
+
+}
+
+.profile-menu{
+
+    position:absolute;
+
+    top:110%;
+
+    right:0;
+
+    width:240px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    overflow:hidden;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(-10px);
+
+    transition:.25s;
+
+    z-index:99999;
+
+}
+
+.profile-menu.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.profile-menu a{
+
+    display:block;
+
+    padding:12px 18px;
+
+    text-decoration:none;
+
+    color:#333;
+
+    transition:.2s;
+
+}
+
+.profile-menu a:hover{
+
+    background:#f5f5f5;
+
+}
+
+.profile-menu hr{
+
+    margin:0;
+
+}
+
+.topbar{
+
+    position:relative;
+
+    z-index:2000;
+
+    overflow:visible;
+
+}
+
+.dropdown{
+
+    position:relative;
+
+}
+
+.dropdown-menu{
+
+    z-index:99999 !important;
+
+}

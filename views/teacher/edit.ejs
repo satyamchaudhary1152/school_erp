@@ -1,0 +1,232 @@
+
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Edit Teacher</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form action="/teachers/<%= teacher._id %>?_method=PUT" method="POST">
+
+                <!-- Name -->
+
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        value="<%= teacher?.name || '' %>"
+                        required>
+
+                    <% if(errors?.name){ %>
+                        <div class="text-danger">
+                            <%= errors.name.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <!-- Email -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">Email</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        value="<%= teacher?.email || '' %>"
+                        required>
+
+                    <% if(errors?.email){ %>
+                        <div class="text-danger">
+                            <%= errors.email.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <!-- Password -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+
+                        New Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control">
+
+                    <small class="text-muted">
+
+                        Leave blank if you don't want to change it.
+
+                    </small>
+
+                </div>
+
+                <!-- Phone -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">Phone Number</label>
+
+                    <input
+                        type="text"
+                        name="phone"
+                        class="form-control"
+                        value="<%= teacher?.phone || '' %>"
+                        required>
+
+                    <% if(errors?.phone){ %>
+                        <div class="text-danger">
+                            <%= errors.phone.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <!-- Gender -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">Gender</label>
+
+                    <select
+                        name="gender"
+                        class="form-select"
+                        required>
+
+                        <option value="">Select Gender</option>
+
+                        <option value="Male"
+                        <%= teacher?.gender==="Male" ? "selected" : "" %>>
+                            Male
+                        </option>
+
+                        <option value="Female"
+                        <%= teacher?.gender==="Female" ? "selected" : "" %>>
+                            Female
+                        </option>
+
+                        <option value="Other"
+                        <%= teacher?.gender==="Other" ? "selected" : "" %>>
+                            Other
+                        </option>
+
+                    </select>
+
+                    <% if(errors?.gender){ %>
+                        <div class="text-danger">
+                            <%= errors.gender.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <!-- Qualification -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">Qualification</label>
+
+                    <input
+                        type="text"
+                        name="qualification"
+                        class="form-control"
+                        value="<%= teacher?.qualification || '' %>"
+                        required>
+
+                    <% if(errors?.qualification){ %>
+                        <div class="text-danger">
+                            <%= errors.qualification.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <!-- Experience -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">Experience (Years)</label>
+
+                    <input
+                        type="number"
+                        name="experience"
+                        class="form-control"
+                        value="<%= teacher?.experience || '' %>"
+                        required>
+
+                    <% if(errors?.experience){ %>
+                        <div class="text-danger">
+                            <%= errors.experience.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <!-- Joining Date -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">Joining Date</label>
+
+                    <input
+                        type="date"
+                        name="joiningDate"
+                        class="form-control"
+                        value="<%= teacher?.joiningDate || '' %>"
+                        required>
+
+                    <% if(errors?.joiningDate){ %>
+                        <div class="text-danger">
+                            <%= errors.joiningDate.message %>
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <div class="d-grid">
+
+            <!-- Buttons -->
+                <div class="d-flex justify-content-between">
+
+                    <a
+                        href="/teachers"
+                        class="btn btn-secondary">
+
+                        ← Back
+
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn btn-warning">
+
+                        ✏️ Update Teacher
+
+                    </button>
+                </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+

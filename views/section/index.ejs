@@ -1,0 +1,226 @@
+<div class="container mt-5">
+
+    <!-- Heading -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <h1 class="fw-bold">
+                Section Management
+            </h1>
+
+            <p class="text-muted">
+                Manage Sections, search records and perform CRUD operations.
+            </p>
+        </div>
+
+        <a href="/sections/add" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i>
+            Add Section
+        </a>
+
+    </div>
+
+    <!-- Dashboard -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-lg-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">🏫</div>
+
+                <h6>Total Sections</h6>
+
+                <h2><%= totalSections %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">✅</div>
+
+                <h6>Active Sections</h6>
+
+                <h2><%= activeSections %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">🔍</div>
+
+                <h6>Search Result</h6>
+
+                <h2><%= totalResults %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Search -->
+
+    <form action="/sections" method="GET" class="mb-4">
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                class="form-control"
+                name="search"
+                value="<%= search || '' %>"
+                placeholder="Search Section">
+
+            <button class="btn btn-primary">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- Table -->
+
+    <table class="table table-striped table-hover table-bordered">
+
+        <thead>
+
+            <tr>
+
+                <th>Section</th>
+
+                <th>Class</th>
+
+                <th>Capacity</th>
+
+                <th>Status</th>
+
+                <th>Edit</th>
+
+                <th>Delete</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% sections.forEach(section=>{ %>
+
+                <tr>
+
+                    <td>
+
+                        <%= section.sectionName %>
+
+                    </td>
+
+                    <td>
+
+                        <%= section.class.className %>
+
+                    </td>
+
+                    <td>
+
+                        <%= section.capacity %>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-<%= section.status==="Active" ? "success":"danger" %>">
+
+                            <%= section.status %>
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="/sections/<%= section._id %>/edit"
+                            class="btn btn-warning btn-sm">
+
+                            Edit
+
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <form
+                            action="/sections/<%= section._id %>?_method=DELETE"
+                            method="POST"
+                            onsubmit="return confirm('Delete Section?')">
+
+                            <button class="btn btn-danger btn-sm">
+
+                                Delete
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+    <!-- Pagination -->
+
+    <div class="d-flex justify-content-center mt-4">
+
+        <% if(page>1){ %>
+
+            <a href="/sections?page=<%= page-1 %>&search=<%= search %>" class="btn btn-secondary me-2">
+
+                Previous
+
+            </a>
+
+        <% } %>
+
+        <% for(let i=1;i<=totalPages;i++){ %>
+
+            <a href="/sections?page=<%= i %>&search=<%= search %>"
+               class="btn <%= page===i ? 'btn-primary':'btn-outline-primary' %> me-2">
+
+                <%= i %>
+
+            </a>
+
+        <% } %>
+
+        <% if(page<totalPages){ %>
+
+            <a href="/sections?page=<%= page+1 %>&search=<%= search %>" class="btn btn-secondary">
+
+                Next
+
+            </a>
+
+        <% } %>
+
+    </div>
+
+</div>

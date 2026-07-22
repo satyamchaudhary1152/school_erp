@@ -1,0 +1,243 @@
+<div class="container mt-5">
+
+    <!-- Heading -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <h1 class="fw-bold">
+                Class Management
+            </h1>
+
+            <p class="text-muted">
+                Manage Classes, search records and perform CRUD operations.
+            </p>
+        </div>
+
+        <a href="/classes/add" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i>
+            Add Class
+        </a>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- Total Classes -->
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="icon">🏫</div>
+
+                <h6>Total Classes</h6>
+
+                <h2><%= totalClasses %></h2>
+
+            </div>
+
+        </div>
+
+        <!-- Active Classes -->
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="icon">✅</div>
+
+                <h6>Active Classes</h6>
+
+                <h2><%= activeClasses %></h2>
+
+            </div>
+
+        </div>
+
+        <!-- Search Result -->
+
+        <div class="col-lg-4 col-md-12">
+
+            <div class="dashboard-card">
+
+                <div class="icon">🔍</div>
+
+                <h6>Search Results</h6>
+
+                <h2><%= totalResults %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Search -->
+
+    <form action="/classes" method="GET" class="mb-4">
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="Search Class"
+                value="<%= search || '' %>">
+
+            <button class="btn btn-primary">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- Table -->
+
+    <table class="table table-striped table-hover table-bordered align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th class="table-dark text-center">Class Name</th>
+
+                <th class="table-dark text-center">Description</th>
+
+                <th class="table-dark text-center">Status</th>
+
+                <th class="table-dark text-center">Edit</th>
+
+                <th class="table-dark text-center">Delete</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% classes.forEach(classData => { %>
+
+                <tr>
+
+                    <td class="text-center">
+
+                        <%= classData.className %>
+
+                    </td>
+
+                    <td>
+
+                        <%= classData.description %>
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <% if(classData.status==="Active"){ %>
+
+                            <span class="badge bg-success">
+
+                                Active
+
+                            </span>
+
+                        <% }else{ %>
+
+                            <span class="badge bg-danger">
+
+                                Inactive
+
+                            </span>
+
+                        <% } %>
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <a
+                            href="/classes/<%= classData._id %>/edit"
+                            class="btn btn-warning btn-sm">
+
+                            Edit
+
+                        </a>
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <form
+                            action="/classes/<%= classData._id %>?_method=DELETE"
+                            method="POST"
+                            style="display:inline;"
+                            onsubmit="return confirm('Delete this Class?')">
+
+                            <button
+                                class="btn btn-danger btn-sm">
+
+                                Delete
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+    <!-- Pagination -->
+
+    <div class="d-flex justify-content-center mt-4">
+
+        <% if(page>1){ %>
+
+            <a
+                href="/classes?page=<%= page-1 %>&search=<%= search || '' %>"
+                class="btn btn-secondary me-2">
+
+                Previous
+
+            </a>
+
+        <% } %>
+
+        <% for(let i=1;i<=totalPages;i++){ %>
+
+            <a
+                href="/classes?page=<%= i %>&search=<%= search || '' %>"
+                class="btn <%= page===i ? 'btn-primary':'btn-outline-primary' %> me-2">
+
+                <%= i %>
+
+            </a>
+
+        <% } %>
+
+        <% if(page<totalPages){ %>
+
+            <a
+                href="/classes?page=<%= page+1 %>&search=<%= search || '' %>"
+                class="btn btn-secondary">
+
+                Next
+
+            </a>
+
+        <% } %>
+
+    </div>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="topbar">
+
+    <div class="d-flex justify-content-between align-items-center w-100">
+
+        <!-- Left -->
+        <div>
+            <h4 class="fw-bold mb-0">
+                <%= title %>
+            </h4>
+        </div>
+
+        <!-- Right -->
+        <div class="profile-dropdown">
+
+            <button id="profileBtn" class="profile-btn">
+
+                <i class="fa-solid fa-user-circle me-2 fs-4"></i>
+
+                <div class="text-start">
+
+                    <div class="fw-semibold">
+                        <%= admin ? admin.name : "Administrator" %>
+                    </div>
+
+                    <small class="text-muted">
+                        <%= admin ? admin.email : "" %>
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down ms-3"></i>
+
+            </button>
+
+            <div id="profileMenu" class="profile-menu">
+
+                <!-- My Profile -->
+                <a href="/dashboard/profile">
+
+                    <i class="fa-solid fa-user me-2"></i>
+
+                    My Profile
+
+                </a>
+
+                <!-- Change Password -->
+                <a href="/dashboard/change-password">
+
+                    <i class="fa-solid fa-key me-2"></i>
+
+                    Change Password
+
+                </a>
+
+                <hr>
+
+                <!-- Logout -->
+                <a href="/logout" class="text-danger">
+
+                    <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

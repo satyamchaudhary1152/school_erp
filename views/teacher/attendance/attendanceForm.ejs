@@ -1,0 +1,231 @@
+<div class="card shadow-sm">
+
+    <div class="card-header <%= editMode ? 'bg-warning text-dark' : 'bg-primary text-white' %>">
+
+        <h5 class="mb-0">
+
+            <%= editMode ? "Edit Attendance" : "Take Attendance" %>
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <% if(!assignment){ %>
+
+            <div class="alert alert-warning">
+
+                No Active Assignment Found.
+
+            </div>
+
+        <% } else { %>
+
+            <div class="row mb-4">
+
+                <div class="col-md-4">
+
+                    <strong>Class :</strong>
+
+                    <%= assignment.class.className %>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <strong>Section :</strong>
+
+                    <%= assignment.section.sectionName %>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <strong>Subject :</strong>
+
+                    <%= assignment.subject.subjectName %>
+
+                </div>
+
+            </div>
+
+            <form
+
+                action="<%= editMode ? '/teacher/attendance/'+attendance._id+'?_method=PUT' : '/teacher/attendance' %>"
+
+                method="POST">
+
+                <div class="mb-3">
+
+                    <button
+
+                        type="button"
+
+                        class="btn btn-success btn-sm"
+
+                        id="presentAll">
+
+                        Mark All Present
+
+                    </button>
+
+                    <button
+
+                        type="button"
+
+                        class="btn btn-danger btn-sm ms-2"
+
+                        id="absentAll">
+
+                        Mark All Absent
+
+                    </button>
+
+                </div>
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Roll</th>
+
+                            <th>Name</th>
+
+                            <th width="250">
+
+                                Attendance
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <% students.forEach(student=>{ %>
+
+                        <%
+
+                        let record=null;
+
+                        if(editMode){
+
+                            record=attendance.students.find(
+
+                                s=>s.student.toString()===student._id.toString()
+
+                            );
+
+                        }
+
+                        %>
+
+                        <tr>
+
+                            <td>
+
+                                <%= student.rollNumber %>
+
+                            </td>
+
+                            <td>
+
+                                <%= student.name %>
+
+                            </td>
+
+                            <td>
+
+                                <input
+
+                                    type="hidden"
+
+                                    name="studentIds[]"
+
+                                    value="<%= student._id %>">
+
+                                <div class="d-flex gap-4">
+
+                                    <label>
+
+                                        <input
+
+                                            class="present-radio"
+
+                                            type="radio"
+
+                                            name="status_<%= student._id %>"
+
+                                            value="Present"
+
+                                            <%= !editMode || (record && record.status==="Present") ? "checked" : "" %>>
+
+                                        Present
+
+                                    </label>
+
+                                    <label>
+
+                                        <input
+
+                                            class="absent-radio"
+
+                                            type="radio"
+
+                                            name="status_<%= student._id %>"
+
+                                            value="Absent"
+
+                                            <%= editMode && record && record.status==="Absent" ? "checked" : "" %>>
+
+                                        Absent
+
+                                    </label>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <% }) %>
+
+                    </tbody>
+
+                </table>
+
+                <button
+
+                    class="btn <%= editMode ? 'btn-warning' : 'btn-primary' %> px-5">
+
+                    <%= editMode ? "Update Attendance" : "Save Attendance" %>
+
+                </button>
+
+            </form>
+
+        <% } %>
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("presentAll")?.addEventListener("click",()=>{
+
+    document.querySelectorAll(".present-radio").forEach(r=>r.checked=true);
+
+});
+
+document.getElementById("absentAll")?.addEventListener("click",()=>{
+
+    document.querySelectorAll(".absent-radio").forEach(r=>r.checked=true);
+
+});
+
+</script>

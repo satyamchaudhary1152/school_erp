@@ -1,0 +1,336 @@
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold mb-1">
+
+                Teacher Attendance
+
+            </h2>
+
+            <p class="text-muted mb-0">
+
+                Manage daily attendance for your assigned class.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <% if(!assignment){ %>
+
+        <div class="alert alert-warning">
+
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+
+            No class has been assigned to you.
+
+        </div>
+
+    <% } else { %>
+
+        <!-- Assignment -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <strong>Class</strong>
+
+                        <h5>
+
+                            <%= assignment.class.className %>
+
+                        </h5>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <strong>Section</strong>
+
+                        <h5>
+
+                            <%= assignment.section.sectionName %>
+
+                        </h5>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <strong>Subject</strong>
+
+                        <h5>
+
+                            <%= assignment.subject.subjectName %>
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Statistics -->
+
+        <div class="row mb-4">
+
+            <div class="col-md-4">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-body text-center">
+
+                        <h2 class="text-primary">
+
+                            <%= todayStudents %>
+
+                        </h2>
+
+                        <p class="mb-0">
+
+                            Students
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-body text-center">
+
+                        <h2 class="text-success">
+
+                            <%= todayPresent %>
+
+                        </h2>
+
+                        <p class="mb-0">
+
+                            Present
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-body text-center">
+
+                        <h2 class="text-danger">
+
+                            <%= todayAbsent %>
+
+                        </h2>
+
+                        <p class="mb-0">
+
+                            Absent
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Today's Status -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <h4 class="mb-3">
+
+                    Today's Attendance
+
+                </h4>
+
+                <% if(attendanceTakenToday){ %>
+
+                    <div class="alert alert-success">
+
+                        <i class="fa-solid fa-circle-check me-2"></i>
+
+                        Attendance has already been marked today.
+
+                    </div>
+
+                    <a
+
+                        href="/teacher/attendance/<%= todayAttendance._id %>/edit"
+
+                        class="btn btn-warning">
+
+                        <i class="fa-solid fa-pen me-2"></i>
+
+                        Edit Today's Attendance
+
+                    </a>
+
+                <% } else { %>
+
+                    <div class="alert alert-warning">
+
+                        <i class="fa-solid fa-clock me-2"></i>
+
+                        Attendance has not been taken today.
+
+                    </div>
+
+                    <a
+
+                        href="/teacher/attendance/take"
+
+                        class="btn btn-primary">
+
+                        <i class="fa-solid fa-clipboard-check me-2"></i>
+
+                        Take Attendance
+
+                    </a>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
+        <!-- Attendance History -->
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header bg-dark text-white">
+
+                Attendance History
+
+            </div>
+
+            <div class="card-body p-0">
+
+                <% if(attendance.length===0){ %>
+
+                    <div class="p-4 text-center text-muted">
+
+                        No attendance records found.
+
+                    </div>
+
+                <% } else { %>
+
+                    <table class="table table-striped table-hover mb-0">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+
+                                <th>Total</th>
+
+                                <th>Present</th>
+
+                                <th>Absent</th>
+
+                                <th width="120">
+
+                                    Action
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <% attendance.forEach(item=>{ 
+
+                                const present=item.students.filter(s=>s.status==="Present").length;
+
+                                const absent=item.students.filter(s=>s.status==="Absent").length;
+                            %>
+
+                            <tr>
+
+                                <td>
+
+                                    <%= new Date(item.date).toLocaleDateString() %>
+
+                                </td>
+
+                                <td>
+
+                                    <%= item.students.length %>
+
+                                </td>
+
+                                <td class="text-success fw-bold">
+
+                                    <%= present %>
+
+                                </td>
+
+                                <td class="text-danger fw-bold">
+
+                                    <%= absent %>
+
+                                </td>
+
+                                <td>
+
+                                    <a
+
+                                        href="/teacher/attendance/<%= item._id %>/edit"
+
+                                        class="btn btn-sm btn-warning">
+
+                                        <i class="fa-solid fa-pen"></i>
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            <% }) %>
+
+                        </tbody>
+
+                    </table>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
+    <% } %>
+
+</div>

@@ -1,0 +1,218 @@
+<div class="container mt-5">
+
+    <!-- Page Heading -->
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+
+            <h1 class="fw-bold">
+
+                Dashboard
+
+            </h1>
+
+            <p class="text-muted">
+
+                Welcome back to your School ERP Dashboard.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    👨‍🎓
+
+                </div>
+
+                <h6>Total Students</h6>
+
+                <h2><%= totalStudents %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    👨‍🏫
+
+                </div>
+
+                <h6>Total Teachers</h6>
+
+                <h2><%= totalTeachers %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    🏫
+
+                </div>
+
+                <h6>Total Classes</h6>
+
+                <h2><%= totalClasses %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    📚
+
+                </div>
+
+                <h6>Total Subjects</h6>
+
+                <h2><%= totalSubjects %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Information Cards -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-card">
+
+                <h4 class="mb-3">
+
+                    Today's Overview
+
+                </h4>
+
+                <p class="text-muted mb-0">
+
+                    Welcome to your School ERP Dashboard.
+
+                    Manage Students, Teachers, Classes,
+
+                    Sections, Subjects and Attendance
+
+                    from one centralized panel.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-card">
+
+                <h4 class="mb-3">
+
+                    System Status
+
+                </h4>
+
+                <p class="mb-2">
+
+                    🟢 MongoDB Connected
+
+                </p>
+
+                <p class="mb-2">
+
+                    🟢 Server Running
+
+                </p>
+
+                <p class="mb-0">
+
+                    🟢 ERP Ready
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <h3 class="fw-bold mb-4">
+
+        Quick Actions
+
+    </h3>
+
+    <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="/students/add"
+               class="btn btn-primary w-100 py-4">
+
+                <i class="fa-solid fa-user-plus me-2"></i>
+
+                Add Student
+
+            </a>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="/teachers/add"
+               class="btn btn-success w-100 py-4">
+
+                <i class="fa-solid fa-user-plus me-2"></i>
+
+                Add Teacher
+
+            </a>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="/classes/add"
+               class="btn btn-warning w-100 py-4">
+
+                <i class="fa-solid fa-school me-2"></i>
+
+                Add Class
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

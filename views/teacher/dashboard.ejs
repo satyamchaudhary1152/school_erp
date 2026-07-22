@@ -1,0 +1,163 @@
+<div class="container-fluid">
+
+    <div class="mb-4">
+
+        <h2 class="fw-bold">
+
+            Welcome,
+
+            <%= teacher.name %>
+
+            👋
+
+        </h2>
+
+        <p class="text-muted">
+
+            Have a productive day.
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Assigned Class -->
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    🎓
+
+                </div>
+
+                <h6>
+
+                    Assigned Class
+
+                </h6>
+
+                <h3>
+
+                    <%= assignment ? assignment.class.className : "-" %>
+
+                </h3>
+
+            </div>
+
+        </div>
+
+        <!-- Assigned Section -->
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    📚
+
+                </div>
+
+                <h6>
+
+                    Assigned Section
+
+                </h6>
+
+                <h3>
+
+                    <%= assignment ? assignment.section.sectionName : "-" %>
+
+                </h3>
+
+            </div>
+
+        </div>
+
+        <!-- Total Students -->
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">
+
+                    👨‍🎓
+
+                </div>
+
+                <h6>
+
+                    Total Students
+
+                </h6>
+
+                <h3>
+
+                    <%= totalStudents %>
+
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+
+                    Quick Actions
+
+                </div>
+
+                <div class="card-body">
+
+                    <a
+
+                        href="/teacher/students"
+
+                        class="btn btn-primary me-3 mb-2">
+
+                        My Students
+
+                    </a>
+
+                    <a
+
+                        href="/teacher/students/add"
+
+                        class="btn btn-success me-3 mb-2">
+
+                        Add Student
+
+                    </a>
+
+                    <a
+
+                        href="/teacher/attendance"
+
+                        class="btn btn-warning mb-2">
+
+                        Take Attendance
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

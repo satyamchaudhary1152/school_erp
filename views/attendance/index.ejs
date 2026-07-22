@@ -1,0 +1,193 @@
+<div class="container-fluid">
+
+    <!-- Heading -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold">
+                Attendance Management
+            </h1>
+
+            <p class="text-muted">
+                Manage daily attendance records.
+            </p>
+
+        </div>
+
+        <a href="/attendance/take" class="btn btn-success">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Take Attendance
+
+        </a>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">📅</div>
+
+                <h6>Total Records</h6>
+
+                <h2><%= totalAttendance %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">👨‍🎓</div>
+
+                <h6>Today's Students</h6>
+
+                <h2><%= todayStudents %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="icon">✅</div>
+
+                <h6>Present Today</h6>
+
+                <h2><%= todayPresent %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Attendance Table -->
+
+    <div class="table-card">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Class</th>
+
+                    <th>Section</th>
+
+                    <th>Total Students</th>
+
+                    <th class="text-center">
+                        Edit
+                    </th>
+
+                    <th class="text-center">
+                        Delete
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <% if(attendance.length===0){ %>
+
+                    <tr>
+
+                        <td colspan="6" class="text-center text-muted py-4">
+
+                            No attendance records found.
+
+                        </td>
+
+                    </tr>
+
+                <% } else { %>
+
+                    <% attendance.forEach(record=>{ %>
+
+                        <tr>
+
+                            <td>
+
+                                <%= new Date(record.date).toLocaleDateString() %>
+
+                            </td>
+
+                            <td>
+
+                                <%= record.class.className %>
+
+                            </td>
+
+                            <td>
+
+                                <%= record.section.sectionName %>
+
+                            </td>
+
+                            <td>
+
+                                <%= record.students.length %>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <a
+                                    href="/attendance/<%= record._id %>/edit"
+                                    class="btn btn-warning btn-sm">
+
+                                    <i class="fa-solid fa-pen-to-square"></i>
+
+                                </a>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <form
+                                    action="/attendance/<%= record._id %>?_method=DELETE"
+                                    method="POST"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('Are you sure you want to delete this attendance record?')">
+
+                                    <button class="btn btn-danger btn-sm">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                <% } %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

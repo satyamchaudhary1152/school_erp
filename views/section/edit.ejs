@@ -1,0 +1,154 @@
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-warning">
+
+            <h3 class="mb-0">
+
+                Edit Section
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                action="/sections/<%= section._id %>?_method=PUT"
+                method="POST">
+
+                <!-- Section Name -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Section Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="sectionName"
+                        class="form-control"
+                        value="<%= section.sectionName %>"
+                        required>
+
+                </div>
+
+                <!-- Class -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Select Class
+
+                    </label>
+
+                    <select
+                        name="class"
+                        class="form-select">
+
+                        <% classes.forEach(classItem=>{ %>
+
+                            <option
+                                value="<%= classItem._id %>"
+                                <%= section.class.toString()==classItem._id.toString() ? "selected" : "" %>>
+
+                                <%= classItem.className %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+                <!-- Capacity -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Capacity
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="capacity"
+                        class="form-control"
+                        value="<%= section.capacity %>"
+                        required>
+
+                </div>
+
+                <!-- Status -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Status
+
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select">
+
+                        <option
+                            value="Active"
+                            <%= section.status==="Active" ? "selected" : "" %>>
+
+                            Active
+
+                        </option>
+
+                        <option
+                            value="Inactive"
+                            <%= section.status==="Inactive" ? "selected" : "" %>>
+
+                            Inactive
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="d-grid">
+
+            <!-- Buttons -->
+                <div class="d-flex justify-content-between">
+
+                    <a
+                        href="/sections"
+                        class="btn btn-secondary">
+
+                        ← Back
+
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn btn-warning">
+
+                        ✏️ Update Section
+
+                    </button>
+                </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

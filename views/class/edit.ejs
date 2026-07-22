@@ -1,0 +1,118 @@
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-warning">
+
+            <h3 class="mb-0">
+
+                Edit Class
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                action="/classes/<%= classData._id %>?_method=PUT"
+                method="POST">
+
+                <!-- Class Name -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Class Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="className"
+                        class="form-control"
+                        value="<%= classData.className %>"
+                        required>
+
+                    <% if(errors?.className){ %>
+
+                        <div class="text-danger">
+
+                            <%= errors.className.message %>
+
+                        </div>
+
+                    <% } %>
+
+                </div>
+
+                <!-- Description -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Description
+
+                    </label>
+
+                    <textarea
+                        name="description"
+                        class="form-control"
+                        rows="3"><%= classData.description || '' %></textarea>
+
+                </div>
+
+                <!-- Status -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Status
+
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select">
+
+                        <option
+                            value="Active"
+                            <%= classData.status==="Active" ? "selected" : "" %>>
+
+                            Active
+
+                        </option>
+
+                        <option
+                            value="Inactive"
+                            <%= classData.status==="Inactive" ? "selected" : "" %>>
+
+                            Inactive
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="d-grid">
+
+                    <button
+                        class="btn btn-warning btn-lg">
+
+                        Update Class
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

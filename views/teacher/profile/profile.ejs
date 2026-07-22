@@ -1,0 +1,193 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                My Profile
+
+            </h2>
+
+            <p class="text-muted mb-0">
+
+                View your personal information.
+
+            </p>
+
+        </div>
+
+        <a
+            href="/teacher/profile/edit"
+            class="btn btn-primary">
+
+            <i class="fa-solid fa-pen-to-square"></i>
+
+            Edit Profile
+
+        </a>
+
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <div class="row gy-4">
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Employee ID
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.employeeId %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Name
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.name %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Email
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.email %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Phone
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.phone %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Gender
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.gender %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Qualification
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.qualification %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Experience
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.experience %> Years
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Joining Date
+
+                    </label>
+
+                    <p>
+
+                        <%= teacher.joiningDate.toDateString() %>
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="fw-semibold">
+
+                        Status
+
+                    </label>
+
+                    <p>
+
+                        <span class="badge bg-success">
+
+                            <%= teacher.status %>
+
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

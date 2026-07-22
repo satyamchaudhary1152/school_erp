@@ -1,0 +1,353 @@
+<div class="container-fluid">
+
+    <!-- Heading -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold">
+                Attendance Reports
+            </h1>
+
+            <p class="text-muted">
+                View and analyze attendance records.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Filters -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <form action="/attendance/reports" method="GET">
+
+                <div class="row g-3">
+
+                    <!-- Section -->
+
+                    <div class="col-md-5">
+
+                        <label class="form-label">
+
+                            Section
+
+                        </label>
+
+                        <select
+                            name="section"
+                            class="form-select">
+
+                            <option value="">
+
+                                All Sections
+
+                            </option>
+
+                            <% sections.forEach(section=>{ %>
+
+                                <option
+                                    value="<%= section._id %>"
+                                    <%= selectedSection==section._id.toString() ? "selected" : "" %>>
+
+                                    <%= section.class.className %> - <%= section.sectionName %>
+
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Student Search -->
+
+<div class="col-md-3">
+
+    <label class="form-label">
+
+        Student
+
+    </label>
+
+    <input
+        type="text"
+        name="student"
+        class="form-control"
+        placeholder="Student Name"
+        value="<%= student %>">
+
+</div>
+
+<!-- From Date -->
+
+<div class="col-md-2">
+
+    <label class="form-label">
+
+        From
+
+    </label>
+
+    <input
+        type="date"
+        name="fromDate"
+        value="<%= fromDate %>"
+        class="form-control">
+
+</div>
+
+<!-- To Date -->
+
+<div class="col-md-2">
+
+    <label class="form-label">
+
+        To
+
+    </label>
+
+    <input
+        type="date"
+        name="toDate"
+        value="<%= toDate %>"
+        class="form-control">
+
+</div>
+
+<!-- Button -->
+
+<div class="d-flex align-items-center gap-3 mt-4">
+
+    <button class="btn btn-primary action-btn2">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        Search
+
+    </button>
+
+    <a
+    href="/attendance/reports/pdf?section=<%= selectedSection %>&student=<%= student %>&fromDate=<%= fromDate %>&toDate=<%= toDate %>"
+    class="btn btn-danger action-btn2">
+
+        <i class="fa-solid fa-file-pdf"></i>
+
+        Export PDF
+
+    </a>
+
+    <a
+    href="/attendance/reports"
+    class="btn btn-secondary action-btn2">
+
+        <i class="fa-solid fa-rotate-left"></i>
+
+        Reset
+
+    </a>
+
+</div>
+
+    <!-- Statistics -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-lg-2 col-md-4">
+
+            <div class="dashboard-card text-center">
+
+                <h6>Total</h6>
+
+                <h2><%= totalStudents %></h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 col-md-4">
+
+            <div class="dashboard-card text-center">
+
+                <h6>Present</h6>
+
+                <h2 class="text-success">
+
+                    <%= present %>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 col-md-4">
+
+            <div class="dashboard-card text-center">
+
+                <h6>Absent</h6>
+
+                <h2 class="text-danger">
+
+                    <%= absent %>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-2 col-md-4">
+
+            <div class="dashboard-card text-center">
+
+                <h6>Attendance</h6>
+
+                <h2>
+
+                    <%= attendancePercentage %>%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Report Table -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Class</th>
+
+                            <th>Section</th>
+
+                            <th>Student</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <% if(reportRows.length===0){ %>
+
+                            <tr>
+
+                                <td colspan="5" class="text-center text-muted py-4">
+
+                                    No attendance records found.
+
+                                </td>
+
+                            </tr>
+
+                        <% } %>
+
+                        <% reportRows.forEach(item=>{ %>
+
+<tr>
+
+    <td>
+
+        <%= new Date(item.date).toLocaleDateString() %>
+
+    </td>
+
+    <td>
+
+        <%= item.class.className %>
+
+    </td>
+
+    <td>
+
+        <%= item.section.sectionName %>
+
+    </td>
+
+    <td>
+
+        <%= item.student.name %>
+
+    </td>
+
+    <td>
+
+        <% if(item.status==="Present"){ %>
+
+            <span class="badge bg-success">
+
+                Present
+
+            </span>
+
+        <% } %>
+
+        <% if(item.status==="Absent"){ %>
+
+            <span class="badge bg-danger">
+
+                Absent
+
+            </span>
+
+        <% } %>
+
+        <% if(item.status==="Late"){ %>
+
+            <span class="badge bg-warning text-dark">
+
+                Late
+
+            </span>
+
+        <% } %>
+
+        <% if(item.status==="Leave"){ %>
+
+            <span class="badge bg-info text-dark">
+
+                Leave
+
+            </span>
+
+        <% } %>
+
+    </td>
+
+</tr>
+
+<% }) %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
