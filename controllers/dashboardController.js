@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const Admin = require("../models/admin");
-const Student = require("../models/Student");
-const Teacher = require("../models/Teacher");
-const Class = require("../models/Class");
-const Subject = require("../models/Subject");
+const Student = require("../models/student");
+const Teacher = require("../models/teacher");
+const Class = require("../models/class");
+const Subject = require("../models/subject");
 const PAGE=require("../constants/pageTitles");
 
 const showDashboard = async (req, res) => {
