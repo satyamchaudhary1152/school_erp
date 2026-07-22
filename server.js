@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
+app.set("trust proxy", 1);
 
 const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
@@ -56,7 +57,10 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax"
         }
     })
 );
@@ -142,7 +146,7 @@ app.use(errorHandler);
 
 // ===========================
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
 
