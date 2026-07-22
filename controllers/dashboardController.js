@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const Admin = require("../models/Admin");
+const Admin = require("../models/admin");
 const Student = require("../models/Student");
 const Teacher = require("../models/Teacher");
 const Class = require("../models/Class");
