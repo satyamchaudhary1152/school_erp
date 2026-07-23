@@ -1,9 +1,9 @@
-const Attendance = require("../models/Attendance");
+const Attendance = require("../models/attendance");
 const asyncHandler = require("../middleware/asyncHandler");
 const PAGE = require("../constants/pageTitles");
-const Class = require("../models/Class");
-const Section = require("../models/Section");
-const Student = require("../models/Student");
+const Class = require("../models/class");
+const Section = require("../models/section");
+const Student = require("../models/student");
 const mongoose = require("mongoose");
 const generateAttendancePDF = require("../utils/pdfGenerator");
 

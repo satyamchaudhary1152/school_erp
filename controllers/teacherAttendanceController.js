@@ -1,10 +1,10 @@
 const asyncHandler = require("../middleware/asyncHandler");
 
-const TeacherAssignment = require("../models/TeacherAssignment");
+const TeacherAssignment = require("../models/teacherAssignment");
 
-const Attendance = require("../models/Attendance");
+const Attendance = require("../models/attendance");
 
-const Student = require("../models/Student");
+const Student = require("../models/student");
 
 
 // ==============================

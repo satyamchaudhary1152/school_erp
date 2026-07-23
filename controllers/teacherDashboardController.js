@@ -1,10 +1,10 @@
 const asyncHandler = require("../middleware/asyncHandler");
 const bcrypt = require("bcrypt");
 
-const Teacher = require("../models/Teacher");
-const TeacherAssignment = require("../models/TeacherAssignment");
-const Student = require("../models/Student");
-const Attendance = require("../models/Attendance");
+const Teacher = require("../models/teacher");
+const TeacherAssignment = require("../models/teacherAssignment");
+const Student = require("../models/student");
+const Attendance = require("../models/attendance");
 
 // ======================================================
 // Teacher Dashboard

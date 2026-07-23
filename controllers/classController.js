@@ -1,4 +1,4 @@
-const Class = require("../models/Class");
+const Class = require("../models/class");
 const asyncHandler = require("../middleware/asyncHandler");
 const PAGE=require("../constants/pageTitles");
 

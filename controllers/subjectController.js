@@ -1,4 +1,4 @@
-const Subject = require("../models/Subject");
+const Subject = require("../models/subject");
 const asyncHandler = require("../middleware/asyncHandler");
 const PAGE=require("../constants/pageTitles");
 

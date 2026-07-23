@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 
-const Teacher = require("../models/Teacher");
+const Teacher = require("../models/teacher");
 
 const asyncHandler = require("../middleware/asyncHandler");
 

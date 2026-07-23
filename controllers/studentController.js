@@ -1,8 +1,8 @@
-const Student = require("../models/Student");
+const Student = require("../models/student");
 const asyncHandler = require("../middleware/asyncHandler");
 const PAGE = require("../constants/pageTitles");
-const Class = require("../models/Class");
-const Section = require("../models/Section");
+const Class = require("../models/class");
+const Section = require("../models/section");
 
 // GET Students ---------->>
 

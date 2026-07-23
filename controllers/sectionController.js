@@ -1,5 +1,5 @@
-const Section = require("../models/Section");
-const Class = require("../models/Class");
+const Section = require("../models/section");
+const Class = require("../models/class");
 const asyncHandler = require("../middleware/asyncHandler");
 const PAGE=require("../constants/pageTitles");
 

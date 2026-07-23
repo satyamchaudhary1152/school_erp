@@ -1,8 +1,8 @@
-const TeacherAssignment = require("../models/TeacherAssignment");
-const Teacher = require("../models/Teacher");
-const Class = require("../models/Class");
-const Section = require("../models/Section");
-const Subject = require("../models/Subject");
+const TeacherAssignment = require("../models/teacherAssignment");
+const Teacher = require("../models/teacher");
+const Class = require("../models/class");
+const Section = require("../models/section");
+const Subject = require("../models/subject");
 
 const asyncHandler = require("../middleware/asyncHandler");
 const PAGE=require("../constants/pageTitles");
